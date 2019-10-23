@@ -16,7 +16,7 @@ using namespace std;
 
 
  //use process in all queues
-struct process
+struct process   //
 {
 	string id;
 	int num;
@@ -27,12 +27,12 @@ struct semaphore {
 	queue<process> buffer;
 };
 
-//all global variables---------------------------
+//all global variables---------------------------common coupling
 queue<process> critical;
 process node;
 semaphore majorLock;
 
-void semSignal(semaphore *s)
+void semSignal(semaphore *s) //data coupling
 {
 	s->count++;
 	if (s->count <= 0)
@@ -43,7 +43,7 @@ void semSignal(semaphore *s)
 	}
 }
 
-void semWait(semaphore *s)
+void semWait(semaphore *s) //control coupling
 {
 	s->count--;
 	if (s->count < 0)
